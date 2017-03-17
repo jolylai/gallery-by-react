@@ -1,9 +1,16 @@
 /* Base Application Styles */
-body {
+body,html{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
   color: #fff;
   background: #222;
 }
-
+#app {
+  width: 100%;
+  height: 100%;
+}
 .index img {
   margin: 40px auto;
   border-radius: 4px;
@@ -11,11 +18,46 @@ body {
   display: block;
 }
 
-.index .notice {
-  margin: 20px auto;
-  padding: 15px 0;
-  text-align: center;
-  border: 1px solid #000;
-  border-width: 1px 0;
-  background: #666;
+.stage{
+  height: 100%;
+  width: 100%;
+  background-color: tomato;
 }
+.img-sec{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #DDDDDD;
+}
+img{
+  height: 240px;
+  width: 240px;
+}
+.img-figure{
+  width: 320px;
+  height: 360px;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 40px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: left .6s ease-in-out,top .6s ease-in-out;
+}
+figure{
+  position: absolute;
+}
+.img-title{
+  margin-top: 20px;
+  color: #a7a0a2;
+  font-size: 14px;
+}
+figcaption{
+  text-align: center;
+}
+.is-inverse {
+  background-color: #555;
+
+  transform: rotateY(180deg);
+}
+
