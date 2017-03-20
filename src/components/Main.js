@@ -3,6 +3,8 @@ require('styles/App.css');
 
 import ReactDOM from 'react-dom';
 import React from 'react';
+import ImgFigure from './ImgFigure';
+import ControllerUnits from './ControllerUnits';
 //获取图片相关信息
 // var imageDatas = require('../data/imageDatas.json');
 let imageDatas = require('../data/imageDatas.json');
@@ -22,55 +24,14 @@ imageDatas = (function genImageURL(imageDatasArr) {
 
 function getRangeRandom(low,high){
   return Math.ceil(Math.random() * (high - low) + low);
-};
+}
 
 function get30DegRandom(){
-  return ((Math.random() > 0.5 ? "" : "-") + Math.random() * 30);
-};
+  return ((Math.random() > 0.5 ? '' : '-') + Math.random() * 30);
+}
 
-var ImgFigure = React.createClass({
-  // 点击处理函数
-  handleClick: function (e) {
-    if (this.props.arrange.isCenter) {
-      this.props.inverse();
-    }else{
-      this.props.center();
-    }
-    e.stopPropagation();
-    e.preventDefault();
-  },
-  render: function (){
-    var styleObj = {};
-    // 如果props属性总指定了这张在图片信息，则使用
-    if (this.props.arrange.pos) {
-      styleObj=this.props.arrange.pos;
-    }
-    // 如果图片的旋转角度有值并且不为0,
-    if(this.props.arrange.rotate){
-      // (['-moz-','-webkit-','-ms-','']).forEach(function(value){
-      // }.bind(this));
-        styleObj["transform"]= "rotate(" + this.props.arrange.rotate + "deg)";
-    }
 
-    var imgFigureClassnName = 'img-figure';
-        imgFigureClassnName += this.props.arrange.isInverse ? " is-inverse" : '';
-    return (
-      <figure className={imgFigureClassnName} style={styleObj} onClick ={this.handleClick}>
-        <img src={this.props.data.imageURL}
-              alt = {this.props.data.title}
-        />
-        <figcaption>
-          <h2 className="img-title">{this.props.data.title}</h2>
-          <div className="img-back" onClick={this.handleClick}>
-            <p>
-              {this.props.data.desc}
-            </p>
-          </div>
-        </figcaption>
-      </figure>
-    );
-  }
-});
+
 
 var AppComponent = React.createClass({
   Constant: {
@@ -101,7 +62,7 @@ var AppComponent = React.createClass({
       imgsRangeArr[index].isInverse = !imgsRangeArr[index].isInverse;
       this.setState({
         imgsRangeArr: imgsRangeArr
-      }); 
+      });
     }.bind(this);
   },
   rearRange: function(centerIndex){
@@ -113,7 +74,7 @@ var AppComponent = React.createClass({
         hPosRangeLeftSecX = hPosRange.leftSecX,
         hPosRangeRightSecX = hPosRange.rightSecX,
         hPosRangeY = hPosRange.y,
-        vPosRangeX = vPosRange.x,
+        // vPosRangeX = vPosRange.x,
         vPosRangeTopY = vPosRange.topY,
 
         imgsRangeTopArr = [],
@@ -175,7 +136,7 @@ var AppComponent = React.createClass({
   },
   getInitialState:function(){
     return {
-      imgsRangeArr:[],
+      imgsRangeArr:[]
     }
   },
   // 组件加载后计算图片位置的范围
@@ -229,7 +190,8 @@ var AppComponent = React.createClass({
           isCenter: false
         }
       }
-      imageFigure.push(<ImgFigure data={value} ref={'imgFigure' + index} center={this.center(index)} arrange = {this.state.imgsRangeArr[index]} inverse = {this.inverse(index)}/>)
+      imageFigure.push(<ImgFigure data={value} key={index} ref={'imgFigure' + index} center={this.center(index)} arrange = {this.state.imgsRangeArr[index]} inverse = {this.inverse(index)}/>)
+      controllerUnits.push(<ControllerUnits key={index} center={this.center(index)} arrange={this.state.imgsRangeArr[index]} inverse={this.inverse(index)} />)
     }.bind(this));
     return (
       <div className="stage" ref="stage">
