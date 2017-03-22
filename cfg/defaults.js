@@ -61,7 +61,7 @@ function getDefaultModules() {
 
 module.exports = {
   srcPath: srcPath,
-  publicPath: 'assets/',
+  publicPath: 'galler-by-react/assets/',
   port: dfltPort,
   getDefaultModules: getDefaultModules
 };
