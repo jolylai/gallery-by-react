@@ -16,6 +16,9 @@ var ImgFigure = React.createClass({
     if (this.props.arrange.pos) {
       styleObj=this.props.arrange.pos;
     }
+    if (this.props.arrange.isCenter) {
+      styleObj.zIndex = 111;
+    }
     // 如果图片的旋转角度有值并且不为0,
     if (this.props.arrange.rotate) {
       (['MozTransform', 'msTransform', 'WebkitTransform', 'transform']).forEach(function (value) {
